@@ -14,12 +14,14 @@ class CreateSystemsTable extends Migration
     public function up()
     {
         Schema::create('systems', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
             $table->string('name');
             $table->integer('offset');
             $table->integer('glass_thickness');
             $table->integer('glass_spacing');
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

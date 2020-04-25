@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\System;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
@@ -29,6 +31,8 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        System::creating(function($system) {
+            $system->id = Str::orderedUuid();
+        });
     }
 }
